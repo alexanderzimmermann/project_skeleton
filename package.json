@@ -1,0 +1,14 @@
+{
+  "name": "proskel",
+  "version": "1.0.0",
+  "description": "A PHP / JS / HTML empty project with composer, npm, gulp to start from",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
