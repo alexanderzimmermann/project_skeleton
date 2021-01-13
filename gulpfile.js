@@ -28,15 +28,13 @@ function cssTranspile(cb) {
  * Clean the CSS (Whitespace, comments, etc.)
  * Concat CSS to style.min.css
  * Deploy the file to dist/css
- * @param cb
  * @returns {*}
  */
-function cssMinify(cb) {
+function cssMinify() {
     return gulp.src('public/css/**/*.css')
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(concat('style.min.css'))
         .pipe(gulp.dest('dist/css'));
-    //    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
 }
 
 function jsTranspile(cb) {
