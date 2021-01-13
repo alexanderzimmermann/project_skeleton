@@ -1,15 +1,14 @@
 // Main
-const { series, parallel } = require('gulp');
 const gulp = require('gulp');
+const { series, parallel } = require('gulp');
+const gulpIf = require('gulp-if');
 
 // CSS stuff
 const cleanCSS = require('gulp-clean-css');
-// const autoprefixer = require('gulp-autoprefixer');
 
 // JS stuff
 
 // All stuff
-const concat = require('gulp-concat');
 const useref = require('gulp-useref');
 
 /**
@@ -38,11 +37,10 @@ function cssTranspile(cb) {
  * @returns {*}
  */
 function cssMinify() {
-    return gulp.src('public/css/**/*.css')
-        .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(useref)
-        .pipe(concat('styles.min.css'))
-        .pipe(gulp.dest('public/dist/css'));
+    return gulp.src('public/*.html')
+        .pipe(useref())
+        .pipe(gulpIf('*.css', cleanCSS({compatibility: 'ie8'})))
+        .pipe(gulp.dest('dist'));
 }
 
 function jsTranspile(cb) {
