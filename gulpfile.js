@@ -37,7 +37,7 @@ function cssTranspile(cb) {
  * @returns {*}
  */
 function cssMinify() {
-    return gulp.src('public/*.html')
+    return gulp.src('public/*.{html,php}')
         .pipe(useref())
         .pipe(gulpIf('*.css', cleanCSS({compatibility: 'ie8'})))
         .pipe(gulp.dest('dist'));
