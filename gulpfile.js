@@ -1,5 +1,14 @@
 const { series, parallel } = require('gulp');
+const gulp = require('gulp');
+const cleanCSS = require('gulp-clean-css');
+const concat = require('gulp-concat');
 
+// const autoprefixer = require('gulp-autoprefixer');
+
+/**
+ * Default task.
+ * @param cb
+ */
 function defaultTask(cb) {
     // place code for your default task here
     cb();
@@ -15,9 +24,19 @@ function cssTranspile(cb) {
     cb();
 }
 
+/**
+ * Clean the CSS (Whitespace, comments, etc.)
+ * Concat CSS to style.min.css
+ * Deploy the file to dist/css
+ * @param cb
+ * @returns {*}
+ */
 function cssMinify(cb) {
-    // body omitted
-    cb();
+    return gulp.src('public/css/**/*.css')
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(concat('style.min.css'))
+        .pipe(gulp.dest('dist/css'));
+    //    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
 }
 
 function jsTranspile(cb) {
@@ -40,6 +59,9 @@ function publish(cb) {
     cb();
 }
 
+/**
+ * Build all.
+ */
 exports.build = series(
     clean,
     parallel(
@@ -49,4 +71,9 @@ exports.build = series(
     parallel(cssMinify, jsMinify),
     publish
 );
-exports.default = defaultTask
+
+// Run and build CSS stuff only.
+exports.css = series(cssTranspile, cssMinify);
+
+// Default test task.
+exports.default = defaultTask;
