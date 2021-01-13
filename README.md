@@ -2,6 +2,17 @@
 This skeleton sample shows:
 - How to minify css
 - How to pack the css files.
+- How to minify js
+- How to pack the js files.
+- How to change html and php files that uses those css and js.
+
+This example uses a contact form.
+
+# Requirements
+- git
+- git-flow
+- npm
+- composer
 
 # Setup 
 All commands to set up this skeleton.
@@ -12,39 +23,52 @@ All commands to set up this skeleton.
 - Running Tests
 
 ## Composer
+```sh
 composer require --dev phpunit/phpunit ^9
+```
 
 ## Unit Tests
+```sh
 phpunit Tests
+```
 
 # JS
 - Download and install a jQuery lib.
 
 # npm, NodeJS
-
+```sh
 npm install --save-dev gulp
 npm install --save-dev gulp-if
-
+```
 ## CSS stuff
+```sh
 npm install --save-dev gulp-clean-css
+```
+
+### CSS in HTML 
+When using **gulp-useref** for CSS, this needs to be inserted in the *.html and *.php files.
+```html
+<!-- build:<type> <path> -->
+... HTML Markup, list of script / link tags.
+<!-- endbuild -->
+```
 
 ## JS stuff
 
-## Both
+## Stuff for CSS and JS
+
+```sh
 npm install --save-dev gulp-useref
-
-`<!-- build:<type> <path> -->`
-
-`... HTML Markup, list of script / link tags.`
-
-`<!-- endbuild -->`
-
+```
 
 Alternativen
-npm install  --save-dev gulp-cssnano
+npm install --save-dev gulp-cssnano
 
 # Gulp
 see https://gulpjs.com/docs/en/getting-started/quick-start
-Einfach $ gulp ausführen.
 
+# Deployment
+
+```sh
 gulp build
+```
