@@ -16,10 +16,11 @@ composer require --dev phpunit/phpunit ^9
 npm i --global gulp-cli
 
 # gulp modules
+npm i --save-dev del
 npm i --save-dev gulp
+npm i --save-dev gulp-clean-css
 npm i --save-dev gulp-if
 npm i --save-dev gulp-useref
-npm i --save-dev gulp-clean-css
 npm i --save-dev gulp-uglify
 
 # Additional components

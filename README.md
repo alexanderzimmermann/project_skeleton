@@ -37,8 +37,9 @@ phpunit Tests
 
 # npm, NodeJS
 ```sh
-npm install --save-dev gulp
-npm install --save-dev gulp-if
+npm i --save-dev gulp
+npm i --save-dev gulp-if
+npm i --save-dev del
 ```
 ## CSS stuff
 ```sh

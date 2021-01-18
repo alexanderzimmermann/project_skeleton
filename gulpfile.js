@@ -1,4 +1,4 @@
-// Main
+// Main gulp stuff
 const gulp = require('gulp');
 const { series, parallel } = require('gulp');
 const gulpIf = require('gulp-if');
@@ -10,6 +10,7 @@ const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 
 // All stuff
+const del = require('del');
 const useref = require('gulp-useref');
 
 /**
@@ -21,14 +22,24 @@ function defaultTask(cb) {
     cb();
 }
 
-function clean(cb) {
-    // body omitted
-    cb();
+/**
+ * Clean whole dist directory.
+ * @return {Promise<string[]> | any}
+ */
+function clean() {
+    return del([
+        'dist/*/'
+    ]);
 }
 
-function cssTranspile(cb) {
-    // body omitted
-    cb();
+/**
+ * Only clean the css directory.
+ * @returns {Promise<string[]> | *}
+ */
+function cssClean() {
+    return del([
+        'dist/css/*.css'
+    ]);
 }
 
 /**
@@ -44,14 +55,14 @@ function cssMinify() {
         .pipe(gulp.dest('dist'));
 }
 
-function jsTranspile(cb) {
-    // body omitted
-    cb();
-}
-
-function jsBundle(cb) {
-    // body omitted
-    cb();
+/**
+ * Only clean the js directory.
+ * @returns {Promise<string[]> | *}
+ */
+function jsClean() {
+    return del([
+        'dist/js/*.js'
+    ]);
 }
 
 /**
@@ -75,19 +86,16 @@ function publish(cb) {
  */
 exports.build = series(
     clean,
-    parallel(
-        cssTranspile,
-        series(jsTranspile, jsBundle)
-    ),
-    parallel(cssMinify, jsMinify),
+    cssMinify,
+    jsMinify,
     publish
 );
 
 // Run and build CSS stuff only.
-exports.css = series(cssTranspile, cssMinify);
+exports.css = series(cssClean, cssMinify);
 
 // Run and build JS stuff only.
-exports.js = series(jsBundle, jsMinify);
+exports.js = series(jsClean, jsMinify);
 
 // Default test task.
 exports.default = defaultTask;

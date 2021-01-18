@@ -64,7 +64,7 @@ session_start();
 -->
 
 <!-- Skeleton JS -->
-<!-- build:css js/code.min.js  -->
+<!-- build:js js/code.min.js  -->
 <script src="js/data.js" type="text/javascript"></script>
 <script src="js/form.js" type="text/javascript"></script>
 <script src="js/code.js" type="text/javascript"></script>
