@@ -54,9 +54,16 @@ When using **gulp-useref** for CSS, this needs to be inserted in the *.html and 
 ```
 
 ## JS stuff
+Comparing to minifying, uglifying does both, removing unnecessary white-space and redundant like comments and semicolons 
+and is transforming the code into an "unreadable" form by changing variable names, function names, etc, to hide the 
+original content. Once it is used there's no way to reverse it back.
+
+```sh
+npm install --save-dev gulp-uglify
+```
 
 ## Stuff for CSS and JS
-
+This module is used for both, CSS and JS.
 ```sh
 npm install --save-dev gulp-useref
 ```
