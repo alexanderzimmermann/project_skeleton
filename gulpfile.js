@@ -7,6 +7,7 @@ const gulpIf = require('gulp-if');
 const cleanCSS = require('gulp-clean-css');
 
 // JS stuff
+const uglify = require('gulp-uglify');
 
 // All stuff
 const useref = require('gulp-useref');
@@ -53,9 +54,15 @@ function jsBundle(cb) {
     cb();
 }
 
-function jsMinify(cb) {
-    // body omitted
-    cb();
+/**
+ * Minify JS code.
+ * @returns {*}
+ */
+function jsMinify() {
+    return gulp.src('public/*.{html,php}')
+        .pipe(useref())
+        .pipe(gulpIf('*.js', uglify()))
+        .pipe(gulp.dest('dist'));
 }
 
 function publish(cb) {
@@ -78,6 +85,9 @@ exports.build = series(
 
 // Run and build CSS stuff only.
 exports.css = series(cssTranspile, cssMinify);
+
+// Run and build JS stuff only.
+exports.js = series(jsBundle, jsMinify);
 
 // Default test task.
 exports.default = defaultTask;
